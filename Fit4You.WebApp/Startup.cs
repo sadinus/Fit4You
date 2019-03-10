@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Fit4You.WebApp;
+using AutoMapper;
+using Fit4You.Core.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,8 +33,18 @@ namespace Fit4You.WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Database Configurations
             services.AddDbContext<Fit4YouDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Fit4YouConnectionString")));
+
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -5,11 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Fit4You.WebApp.Models;
+using AutoMapper;
+using Fit4You.Core.Data;
 
 namespace Fit4You.WebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(IMapper mapper, IUnitOfWork unitOfWork)
+        {
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+        }
+
         public IActionResult Index()
         {
             return View();

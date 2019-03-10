@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Fit4You.WebApp
+namespace Fit4You.Core.Data
 {
     public class Fit4YouDbContext : DbContext
     {

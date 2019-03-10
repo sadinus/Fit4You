@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Fit4You.Core.Domain
 {
-    public class UserData
+    public class UserData : IEntity
     {
-        public int UserDataID { get; set; }
+        public int Id { get; set; }
         public int UserID { get; set; }
         public int Age { get; set; }
         public decimal Height { get; set; }
