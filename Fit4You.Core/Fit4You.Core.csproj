@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190310153930_test.cs" />
+    <Compile Remove="Data\Migrations\20190310153930_test.cs" />
+    <Compile Remove="Data\Migrations\20190310155744_Test nowej lokalizacji folderu z migracjami.cs" />
+    <Compile Remove="Data\Migrations\20190310155818_test2.cs" />
+    <Compile Remove="Data\Migrations\20190310155942_Zmiana lokalizacji folderu z migracjami.cs" />
   </ItemGroup>
 
   <ItemGroup>
