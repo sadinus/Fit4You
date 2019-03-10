@@ -6,14 +6,15 @@ namespace Fit4You.WebApp
 {
     public class Fit4YouDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserData> UserData { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             var configuration = builder.Build();
-            optionsBuilder.UseSqlite(configuration.GetConnectionString("Fit4YouConnectionString"));
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("Fit4YouConnectionString"));
         }
     }
 }

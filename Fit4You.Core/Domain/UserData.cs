@@ -6,6 +6,8 @@ namespace Fit4You.Core.Domain
 {
     public class UserData
     {
+        public int UserDataID { get; set; }
+        public int UserID { get; set; }
         public int Age { get; set; }
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
