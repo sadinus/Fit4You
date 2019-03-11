@@ -18,5 +18,7 @@ namespace Fit4You.Core.Services
             var bmi = Math.Round((double)weightAbs / (heightAbs * heightAbs), 1);
             return bmi;
         }
+
+        // Napisać kolejne kalkulatory
     }
 }
