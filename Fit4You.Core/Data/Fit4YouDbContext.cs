@@ -6,6 +6,11 @@ namespace Fit4You.Core.Data
 {
     public class Fit4YouDbContext : DbContext
     {
+        public Fit4YouDbContext(DbContextOptions<Fit4YouDbContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<User> User { get; set; }
         public DbSet<UserData> UserData { get; set; }
 

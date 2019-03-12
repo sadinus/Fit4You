@@ -10,6 +10,6 @@ namespace Fit4You.Core.Data
     {
         IGenericRepository<User> UserRepository { get; }
         IGenericRepository<UserData> UserDataRepository { get; }
-        void Save();
+        void Commit();
     }
 }

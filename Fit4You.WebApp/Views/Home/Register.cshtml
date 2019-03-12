@@ -1,0 +1,18 @@
+﻿@model Fit4You.WebApp.Models.HomeRegisterModel
+
+<form method="post">
+    <h2>Account Info</h2>
+    <TextInput name="email" label="Email address" placeholder="Enter email"></TextInput>
+    <TextInput name="password" label="Password" placeholder="Password" type="password"></TextInput>
+    <TextInput name="repeatpassword" label="Repeat password" type="password"></TextInput>
+    <br />
+    <h2>Your Body Info</h2>
+    <CustomInput name="age" label="Age" type="number"></CustomInput>
+    <CustomInput name="age" label="Age" type="number"></CustomInput>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

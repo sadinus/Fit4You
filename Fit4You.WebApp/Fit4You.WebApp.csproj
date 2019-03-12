@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -12,6 +16,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fit4You.Core\Fit4You.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

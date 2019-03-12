@@ -32,7 +32,7 @@ namespace Fit4You.Core.Data
             }
         }
 
-        public void Save()
+        public void Commit()
         {
             _context.SaveChanges();
         }

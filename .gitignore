@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /Fit4You.Core/appsettings.json
+/Fit4You.WebApp/appsettings.json

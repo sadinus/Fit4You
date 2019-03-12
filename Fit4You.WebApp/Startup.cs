@@ -44,7 +44,7 @@ namespace Fit4You.WebApp
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
