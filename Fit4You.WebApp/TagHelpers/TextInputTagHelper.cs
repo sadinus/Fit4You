@@ -32,6 +32,7 @@ namespace Fit4You.WebApp.TagHelpers
 
             sb.Append($"<label for=\"{name}\">{label}</label>");
             sb.Append($"<input type=\"{type}\" class=\"form-control\" {idAttribute} {placeholderAttribute}>");
+            sb.Append($"<span data-valmsg-for=\"{name}\" data-valmsg-replace=\"true\" class=\"field-validation-error text-danger\"></span>");
             return sb.ToString();
         }
     }

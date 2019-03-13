@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Fit4You.WebApp.Models;
 using AutoMapper;
 using Fit4You.Core.Data;
+using Fit4You.Core.Domain;
 
 namespace Fit4You.WebApp.Controllers
 {
@@ -29,6 +30,20 @@ namespace Fit4You.WebApp.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(HomeRegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new User();
+                entity.Email = model.Email;
+                entity.Password = model.Password;
+                _unitOfWork.UserRepository.Create(entity);
+            }
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
