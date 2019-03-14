@@ -3,14 +3,16 @@ using Fit4You.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fit4You.Core.Migrations
 {
     [DbContext(typeof(Fit4YouDbContext))]
-    partial class Fit4YouDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190314194832_Dodanie pola Password do tabeli User")]
+    partial class DodaniepolaPassworddotabeliUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

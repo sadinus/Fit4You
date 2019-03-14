@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fit4You.WebApp.Models
+namespace Fit4You.WebApp.Models.Home
 {
-    public class HomeRegisterModel
+    public class RegisterViewModel
     {
         [Required(ErrorMessage = "Email address is required")]
         public string Email { get; set; }
@@ -15,7 +11,7 @@ namespace Fit4You.WebApp.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Enter your password again")]
-        [Compare("Password")]
+        [Compare("Password", ErrorMessage = "Password does not match")]
         public string RepeatPassword { get; set; }
     }
 }

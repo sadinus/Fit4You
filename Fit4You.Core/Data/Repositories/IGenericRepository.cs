@@ -11,12 +11,12 @@ namespace Fit4You.Core.Data.Repositories
     {
         IQueryable<TEntity> GetAll();
 
-        Task<TEntity> GetById(int id);
+        TEntity GetById(int id);
 
-        Task Create(TEntity entity);
+        void Create(TEntity entity);
 
-        Task Update(int id, TEntity entity);
+        void Update(int id, TEntity entity);
 
-        Task Delete(int id);
+        void Delete(int id);
     }
 }

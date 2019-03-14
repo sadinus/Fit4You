@@ -1,14 +1,14 @@
-﻿@model Fit4You.WebApp.Models.HomeRegisterModel
+﻿@model Fit4You.WebApp.Models.Home.RegisterViewModel
 
 <div class="row justify-content-md-center">
     <div class="col-10 offset-1 col-md-8 col-lg-6">
-        <form method="post" class="my-3">
+        <customform model="@Model" modelstate="@ViewData.ModelState" class="my-3">
             <h2>Sign Up</h2>
             <TextInput name="email" label="Email address" placeholder="example@@gmail.com"></TextInput>
-            <TextInput name="password" label="Password" placeholder="Qsar923" type="password"></TextInput>
+            <TextInput name="password" label="Password" type="password"></TextInput>
             <TextInput name="repeatpassword" label="Repeat password" type="password"></TextInput>
 
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </customform>
     </div>
 </div>

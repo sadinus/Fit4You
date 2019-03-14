@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Fit4You.WebApp.Models;
-using AutoMapper;
+﻿using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Domain;
+using Fit4You.WebApp.Models;
+using Fit4You.WebApp.Models.Home;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Fit4You.WebApp.Controllers
 {
@@ -33,7 +30,7 @@ namespace Fit4You.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(HomeRegisterModel model)
+        public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -41,9 +38,21 @@ namespace Fit4You.WebApp.Controllers
                 entity.Email = model.Email;
                 entity.Password = model.Password;
                 _unitOfWork.UserRepository.Create(entity);
+                _unitOfWork.Commit();
             }
 
-            return View(model);
+            return RedirectToAction(nameof(Login));
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
