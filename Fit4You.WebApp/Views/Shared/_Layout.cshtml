@@ -6,44 +6,31 @@
     <title>@ViewData["Title"] - Fit4You.WebApp</title>
 
     <environment include="Development">
+        <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true"/>
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Fit4You.WebApp</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Login">Login</a></li>
-                </ul>
-            </div>
+    <div class="col-10 offset-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <h5 class="my-0 mr-md-auto font-weight-normal"><a href="@Url.Action("Index", "Home")" class="p-2 text-dark">Home</a></h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="#">Features</a>
+                <a class="p-2 text-dark" href="#">Enterprise</a>
+                <a class="p-2 text-dark" href="#">Support</a>
+                <a class="p-2 text-dark" href="#">Pricing</a>
+            </nav>
+            <a class="btn btn-outline-primary m-1" href="@Url.Action("Login", "Home")">Login</a>
+            <a class="btn btn-primary m-1" href="@Url.Action("Register", "Home")">Sign up</a>
         </div>
-    </nav>
 
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Fit4You</p>
-        </footer>
     </div>
 
     <environment include="Development">
