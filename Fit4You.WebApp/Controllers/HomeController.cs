@@ -1,10 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics;
+using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Domain;
 using Fit4You.WebApp.Models;
 using Fit4You.WebApp.Models.Home;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Fit4You.WebApp.Controllers
 {
@@ -34,12 +34,15 @@ namespace Fit4You.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = new User();
-                entity.Email = model.Email;
-                entity.Password = model.Password;
-                _unitOfWork.UserRepository.Create(entity);
-                _unitOfWork.Commit();
-                return RedirectToAction(nameof(Login));
+                var entity = new User(model.Email, model.Password);
+                var userExists = _unitOfWork.UserRepository.UserExists(entity);
+                if (!userExists)
+                {
+                    _unitOfWork.UserRepository.Create(entity);
+                    _unitOfWork.Commit();
+                    return RedirectToAction(nameof(Login));
+                }
+                ModelState.AddModelError("Email", "This email is already taken. Try another one");
             }
 
             return View(model);
@@ -52,6 +55,23 @@ namespace Fit4You.WebApp.Controllers
 
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new User(model.Email, model.Password);
+                var correctCredentials = _unitOfWork.UserRepository.CorrectCredentials(entity);
+                if (correctCredentials)
+                {
+                    // login
+                    // open session
+                    return RedirectToAction(nameof(Login));
+                }
+                _unitOfWork.UserRepository.UserExists(entity);
+            }
+            return View();
+        }
+
+        public IActionResult BMICalculator()
         {
             return View();
         }

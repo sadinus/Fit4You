@@ -4,6 +4,7 @@ namespace Fit4You.WebApp.Models.Home
 {
     public class RegisterViewModel
     {
+        [EmailAddress(ErrorMessage = "This is not an email address")]
         [Required(ErrorMessage = "Email address is required")]
         public string Email { get; set; }
 

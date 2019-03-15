@@ -8,7 +8,7 @@ namespace Fit4You.Core.Data
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<User> UserRepository { get; }
+        IUserRepository UserRepository { get; }
         IGenericRepository<UserData> UserDataRepository { get; }
         void Commit();
     }

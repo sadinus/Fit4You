@@ -9,18 +9,18 @@ namespace Fit4You.Core.Data
     public class UnitOfWork : IUnitOfWork
     {
         private readonly Fit4YouDbContext _context;
-        private IGenericRepository<User> _userRepository;
+        private IUserRepository _userRepository;
         private IGenericRepository<UserData> _userDataRepository;
         public UnitOfWork(Fit4YouDbContext context)
         {
             _context = context;
         }
 
-        public IGenericRepository<User> UserRepository
+        public IUserRepository UserRepository
         {
             get
             {
-                return _userRepository = _userRepository ?? new GenericRepository<User>(_context);
+                return _userRepository = _userRepository ?? new UserRepository(_context);
             }
         }
 

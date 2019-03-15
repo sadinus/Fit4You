@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Fit4You.Core.Data;
+using Fit4You.Core.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +46,7 @@ namespace Fit4You.WebApp
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IUserRepository, UserRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

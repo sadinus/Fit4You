@@ -6,6 +6,12 @@ namespace Fit4You.Core.Domain
 {
     public class User : IEntity
     {
+        public User(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
+
         public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
