@@ -39,9 +39,10 @@ namespace Fit4You.WebApp.Controllers
                 entity.Password = model.Password;
                 _unitOfWork.UserRepository.Create(entity);
                 _unitOfWork.Commit();
+                return RedirectToAction(nameof(Login));
             }
 
-            return RedirectToAction(nameof(Login));
+            return View(model);
         }
 
         public IActionResult Login()
