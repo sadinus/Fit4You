@@ -17,9 +17,9 @@ namespace Fit4You.Core.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public IQueryable<TEntity> GetAll()
+        public List<TEntity> FindAll()
         {
-            return _dbContext.Set<TEntity>().AsNoTracking();
+            return _dbContext.Set<TEntity>().AsNoTracking().ToList();
         }
 
         public TEntity GetById(int id)
@@ -29,7 +29,7 @@ namespace Fit4You.Core.Data.Repositories
                              .FirstOrDefault(e => e.Id == id);
         }
 
-        public void Create(TEntity entity)
+        public void Add(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
         }

@@ -3,7 +3,6 @@ using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Domain;
 using Fit4You.WebApp.Models;
-using Fit4You.WebApp.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fit4You.WebApp.Controllers
@@ -29,47 +28,48 @@ namespace Fit4You.WebApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var entity = new User(model.Email, model.Password);
-                var userExists = _unitOfWork.UserRepository.UserExists(entity);
-                if (!userExists)
-                {
-                    _unitOfWork.UserRepository.Create(entity);
-                    _unitOfWork.Commit();
-                    return RedirectToAction(nameof(Login));
-                }
-                ModelState.AddModelError("Email", "This email is already taken. Try another one");
-            }
+        //[HttpPost]
+        //public IActionResult Register(SignUpModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var entity = new User(model.Email, model.Password);
+        //        var userExists = _unitOfWork.UserRepository.UserExists(entity);
+        //        if (!userExists)
+        //        {
+        //            _unitOfWork.UserRepository.Create(entity);
+        //            _unitOfWork.Commit();
+        //            return RedirectToAction(nameof(Login));
+        //        }
+        //        ModelState.AddModelError("Email", "This email is already taken. Try another one");
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        public IActionResult Login()
-        {
-            return View();
-        }
+        //public IActionResult Login()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public IActionResult Login(LoginViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var entity = new User(model.Email, model.Password);
-                var correctCredentials = _unitOfWork.UserRepository.CorrectCredentials(entity);
-                if (correctCredentials)
-                {
-                    // login
-                    // open session
-                    return RedirectToAction(nameof(Login));
-                }
-                _unitOfWork.UserRepository.UserExists(entity);
-            }
-            return View();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Login(SignInModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var entity = new User(model.Username, model.Password);
+        //        var correctCredentials = _unitOfWork.UserRepository.CorrectCredentials(entity);
+        //        if (correctCredentials)
+        //        {
+        //            // login
+        //            // open session
+        //            return RedirectToAction(nameof(Login));
+        //        }
+        //        _unitOfWork.UserRepository.UserExists(entity);
+        //    }
+        //    return View();
+        //}
 
         public IActionResult BMICalculator()
         {

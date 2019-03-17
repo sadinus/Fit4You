@@ -14,14 +14,19 @@ namespace Fit4You.Core.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public bool UserExists(User user)
+        public bool UserWithGivenEmailExists(string email)
         {
-            return _dbContext.User.Any(x => x.Email == user.Email);
+            return _dbContext.User.Any(x => x.Email == email);
         }
 
-        public bool CorrectCredentials(User user)
+        public bool IsEmailAleadyTaken(string email, string username)
         {
-            return _dbContext.User.Any(x => x.Email == user.Email && x.Password == user.Password);
+            return _dbContext.User.Any(x => x.Email == email);
+        }
+
+        public User GetByEmail(string email)
+        {
+            return _dbContext.User.FirstOrDefault(x => x.Email == email);
         }
     }
 }

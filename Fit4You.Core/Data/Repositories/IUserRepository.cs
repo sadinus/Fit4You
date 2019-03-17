@@ -4,7 +4,7 @@ namespace Fit4You.Core.Data.Repositories
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        bool UserExists(User user);
-        bool CorrectCredentials(User user);
+        bool UserWithGivenEmailExists(string email);
+        User GetByEmail(string username);
     }
 }

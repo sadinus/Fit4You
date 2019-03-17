@@ -9,11 +9,11 @@ namespace Fit4You.Core.Data.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IEntity
     {
-        IQueryable<TEntity> GetAll();
+        List<TEntity> FindAll();
 
         TEntity GetById(int id);
 
-        void Create(TEntity entity);
+        void Add(TEntity entity);
 
         void Update(int id, TEntity entity);
 

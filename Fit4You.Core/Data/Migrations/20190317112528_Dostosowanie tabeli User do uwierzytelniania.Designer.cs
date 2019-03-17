@@ -3,14 +3,16 @@ using Fit4You.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fit4You.Core.Migrations
 {
     [DbContext(typeof(Fit4YouDbContext))]
-    partial class Fit4YouDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190317112528_Dostosowanie tabeli User do uwierzytelniania")]
+    partial class DostosowanietabeliUserdouwierzytelniania
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,6 +29,8 @@ namespace Fit4You.Core.Migrations
                     b.Property<string>("Email");
 
                     b.Property<string>("PasswordHash");
+
+                    b.Property<string>("Username");
 
                     b.HasKey("Id");
 

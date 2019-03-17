@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fit4You.WebApp.Models.Home
+namespace Fit4You.WebApp.Models.Auth
 {
-    public class RegisterViewModel
+    public class SignUpModel
     {
         [EmailAddress(ErrorMessage = "This is not an email address")]
         [Required(ErrorMessage = "Email address is required")]

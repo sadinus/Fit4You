@@ -1,8 +1,12 @@
-﻿@model Fit4You.WebApp.Models.Home.RegisterViewModel
+﻿@model Fit4You.WebApp.Models.Auth.SignUpModel
 
 <div class="row justify-content-md-center">
     <div class="col-10 offset-1 col-md-8 col-lg-4">
         <h2 class="my-3">Sign Up</h2>
+        @if (!ViewContext.ModelState.IsValid)
+        {
+            <div asp-validation-summary="All" class="form-validation"></div>
+        }
         <form method="post" class="my-3">
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Email address</label>
