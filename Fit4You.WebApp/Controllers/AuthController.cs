@@ -42,6 +42,7 @@ namespace Fit4You.WebApp.Controllers
                     }
                     return RedirectToAction("Index", "Account");
                 }
+                ModelState.AddModelError("Error", "Email or password is incorrect");
             }
 
             return View(model);
@@ -63,7 +64,7 @@ namespace Fit4You.WebApp.Controllers
                     await LogInUser(model.Email);
                     return RedirectToAction("Index", "Account");
                 }
-                ModelState.AddModelError("Error", "User with this email already exists.");
+                ModelState.AddModelError("Error", "User with this email already exists");
             }
             return View(model);
         }
