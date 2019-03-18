@@ -23,54 +23,6 @@ namespace Fit4You.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        //[HttpPost]
-        //public IActionResult Register(SignUpModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var entity = new User(model.Email, model.Password);
-        //        var userExists = _unitOfWork.UserRepository.UserExists(entity);
-        //        if (!userExists)
-        //        {
-        //            _unitOfWork.UserRepository.Create(entity);
-        //            _unitOfWork.Commit();
-        //            return RedirectToAction(nameof(Login));
-        //        }
-        //        ModelState.AddModelError("Email", "This email is already taken. Try another one");
-        //    }
-
-        //    return View(model);
-        //}
-
-        //public IActionResult Login()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Login(SignInModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var entity = new User(model.Username, model.Password);
-        //        var correctCredentials = _unitOfWork.UserRepository.CorrectCredentials(entity);
-        //        if (correctCredentials)
-        //        {
-        //            // login
-        //            // open session
-        //            return RedirectToAction(nameof(Login));
-        //        }
-        //        _unitOfWork.UserRepository.UserExists(entity);
-        //    }
-        //    return View();
-        //}
-
         public IActionResult BMICalculator()
         {
             return View();

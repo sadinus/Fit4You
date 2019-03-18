@@ -5,9 +5,9 @@
         <h2 class="my-3">Login</h2>
         @if (!ViewContext.ModelState.IsValid)
         {
-        <div asp-validation-summary="All" class="form-validation"></div>
+            <partial name="_ValidationSummaryPartial" />
         }
-        <form method="post" class="my-3" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">
+        <form method="post" class="my-4" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Username</label>
                 <input asp-for="Email" class="form-control" value="@Model?.Email" />

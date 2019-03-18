@@ -19,11 +19,6 @@ namespace Fit4You.Core.Data.Repositories
             return _dbContext.User.Any(x => x.Email == email);
         }
 
-        public bool IsEmailAleadyTaken(string email, string username)
-        {
-            return _dbContext.User.Any(x => x.Email == email);
-        }
-
         public User GetByEmail(string email)
         {
             return _dbContext.User.FirstOrDefault(x => x.Email == email);

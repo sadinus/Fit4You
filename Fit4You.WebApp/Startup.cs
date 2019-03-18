@@ -65,17 +65,17 @@ namespace Fit4You.WebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
-            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {

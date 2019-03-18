@@ -5,7 +5,7 @@
         <h2 class="my-3">Sign Up</h2>
         @if (!ViewContext.ModelState.IsValid)
         {
-            <div asp-validation-summary="All" class="form-validation"></div>
+            <partial name="_ValidationSummaryPartial" />
         }
         <form method="post" class="my-3">
             <div class="form-group">

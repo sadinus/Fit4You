@@ -21,8 +21,6 @@ namespace Fit4You.Tests
 
             Mock<IUserRepository> mockUserRepository = new Mock<IUserRepository>();
 
-            mockUserRepository.Setup(x => x.FindAll()).Returns(users);
-
             mockUserRepository.Setup(x => x.UserWithGivenEmailExists(
                 It.IsAny<string>())).Returns((string s) => users.Any(
                     x => x.Email == s.ToLowerInvariant()));
