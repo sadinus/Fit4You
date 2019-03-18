@@ -9,14 +9,14 @@ namespace Fit4You.Core.Data.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IEntity
     {
-        IQueryable<TEntity> GetAll();
+        List<TEntity> FindAll();
 
-        Task<TEntity> GetById(int id);
+        TEntity GetById(int id);
 
-        Task Create(TEntity entity);
+        void Add(TEntity entity);
 
-        Task Update(int id, TEntity entity);
+        void Update(int id, TEntity entity);
 
-        Task Delete(int id);
+        void Delete(int id);
     }
 }

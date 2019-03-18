@@ -17,35 +17,32 @@ namespace Fit4You.Core.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public IQueryable<TEntity> GetAll()
+        public List<TEntity> FindAll()
         {
-            return _dbContext.Set<TEntity>().AsNoTracking();
+            return _dbContext.Set<TEntity>().AsNoTracking().ToList();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public TEntity GetById(int id)
         {
-            return await _dbContext.Set<TEntity>()
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(e => e.Id == id);
+            return _dbContext.Set<TEntity>()
+                             .AsNoTracking()
+                             .FirstOrDefault(e => e.Id == id);
         }
 
-        public async Task Create(TEntity entity)
+        public void Add(TEntity entity)
         {
-            await _dbContext.Set<TEntity>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            _dbContext.Set<TEntity>().Add(entity);
         }
 
-        public async Task Update(int id, TEntity entity)
+        public void Update(int id, TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);
-            await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public void Delete(int id)
         {
-            var entity = await GetById(id);
+            var entity = GetById(id);
             _dbContext.Set<TEntity>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
         }
     }
 }

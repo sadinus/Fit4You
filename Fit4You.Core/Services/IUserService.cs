@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Fit4You.Core.Domain;
+
+namespace Fit4You.Core.Services
+{
+    public interface IUserService
+    {
+        Task<bool> ValidateCredentials(string email, string password, out User user);
+        Task<bool> AddUser(string email, string password);
+    }
+}
