@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Fit4You.WebApp.Models.Home
+namespace Fit4You.WebApp.Models.Shared
 {
     public class BMICalculatorModel
     {

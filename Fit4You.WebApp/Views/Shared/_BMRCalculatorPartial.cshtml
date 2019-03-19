@@ -1,0 +1,51 @@
+﻿@model Fit4You.WebApp.Models.Shared.BMRCalculatorModel
+
+<form asp-action="CalculateBMR"
+      data-ajax="true"
+      data-ajax-method="POST"
+      data-ajax-update="#BMRCalculator"
+      data-ajax-mode="replace">
+    <div class="text-center my-4">BMR Calculator</div>
+    <hr />
+    <div class="form-group" id="BMRCalculatorRadios">
+        <label asp-for="IsMan" class="control-label d-block">Gender</label>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="bmrIsManRadioTrue" name="IsMan" class="custom-control-input" value="true">
+            <label class="custom-control-label" for="bmrIsManRadioTrue">Man</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="bmrIsManRadioFalse" name="IsMan" class="custom-control-input" value="false">
+            <label class="custom-control-label" for="bmrIsManRadioFalse">Woman</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Weight" class="control-label">Weight</label>
+        <input asp-for="Weight" type="number" class="form-control" value="@Model?.Weight" />
+        <span asp-validation-for="Weight" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Height" class="control-label">Height</label>
+        <input asp-for="Height" type="number" class="form-control" value="@Model?.Height" />
+        <span asp-validation-for="Height" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age" class="control-label">Age</label>
+        <input asp-for="Age" type="number" class="form-control" value="@Model?.Age" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ActivityType">Your Activity</label>
+        <select asp-for="ActivityType" class="form-control">
+            <option value="" selected disabled>Please select</option>
+            <option value="1">None</option>
+            <option value="2">Low</option>
+            <option value="3">Medium</option>
+            <option value="4">High</option>
+            <option value="5">Very High</option>
+        </select>
+        <span asp-validation-for="ActivityType" class="text-danger"></span>
+    </div>
+    <div class="text-center m-3">
+        <button class="btn btn-danger" type="submit">Calculate BMR</button>
+    </div>
+</form>
