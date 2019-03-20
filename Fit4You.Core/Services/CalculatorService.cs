@@ -15,10 +15,36 @@ namespace Fit4You.Core.Services
 
             var weightAbs = Math.Abs(weight);
             var heightAbs = Math.Abs(height);
-            var bmi = Math.Round((double)weightAbs / (heightAbs * heightAbs), 1);
+            var heightInMeters = (double)heightAbs / 100;
+            var bmi = Math.Round((double)weightAbs / (heightInMeters * heightInMeters), 1);
             return bmi;
         }
-
+        
+        public string GetMeaningOfBMI(double bmi)
+        {
+            var meaning = "";
+            if (bmi < 18.5)
+            {
+                meaning = "underweight";
+            }
+            else if (bmi < 25)
+            {
+                meaning = "correct weight";
+            }
+            else if (bmi < 30)
+            {
+                meaning = "overweight";
+            }
+            else if (bmi < 35)
+            {
+                meaning = "obese";
+            }
+            else
+            {
+                meaning = "extremly obese";
+            }
+            return meaning;
+        }
         // Napisać kolejne kalkulatory
     }
 }
