@@ -31,8 +31,7 @@ namespace Fit4You.Tests
             Assert.Equal(actual, expected);
         }
 
-        //[Theory]
-        //[InlineData()]
+        //[Fact]
         //public void CalculateBMR_UserIsMale_WorksFine()
         //{
         //    var calculator = new CalculatorService();

@@ -49,8 +49,7 @@ namespace Fit4You.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Calculate BMR
-                // GET Meaning
+                model.Result = _calculatorService.CalculateBMR(model.Weight, model.Height, model.Age, (bool)model.IsMale);
             }
             return PartialView("_BMRCalculatorPartial", model);
         }
