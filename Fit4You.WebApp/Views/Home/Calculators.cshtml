@@ -2,10 +2,10 @@
 
 <div class="row">
     <div class="col-md border border-width-3 rounded border-info bg-transparent m-3" id="BMICalculator">
-        <partial name="_BMICalculatorPartial" model="@Model?.BMICalculator" />
+        <partial name="_BMICalculatorPartial" model="@Model.BMICalculator" />
     </div>
-    <div class="col-md border border-width-3 rounded border-danger bg-transparent m-3" id="BMRCalculator">
-        <partial name="_BMRCalculatorPartial" model="@Model?.BMRCalculator" />
+    <div class="col-md border border-width-3 rounded border-violet bg-transparent m-3" id="BMRCalculator">
+        <partial name="_BMRCalculatorPartial" model="@Model.BMRCalculator" />
     </div>
     @*<div class="col-md border border-width-3 rounded border-violet bg-transparent m-3">
         <form method="post" action="@Url.Action("CalculateBMI")">
@@ -41,18 +41,30 @@
 
 @section Styles{
     <style>
-        #BMRCalculatorRadios .custom-control-input:checked ~ .custom-control-label::before {
-            border-color: #C82333;
-            background-color: #C82333;
-        }
-
         #BMICalculatorRadios .custom-control-input:checked ~ .custom-control-label::before {
             border-color: #17A2B8;
             background-color: #17A2B8;
         }
 
-        /*.border-violet {
+        #BMRCalculatorRadios .custom-control-input:checked ~ .custom-control-label::before {
+            border-color: #563D7C;
+            background-color: #563D7C;
+        }
+
+        .btn-violet {
+            color: #fff;
+            background-color: #563D7C;
+            border-color: #563D7C;
+        }
+
+            .btn-violet:hover {
+                color: #fff;
+                background-color: #422e60;
+                border-color: #422e60;
+            }
+
+        .border-violet {
             border-color: #563D7C !important;
-        }*/
+        }
     </style>
 }

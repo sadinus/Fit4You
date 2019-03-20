@@ -3,6 +3,7 @@ using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Domain;
 using Fit4You.WebApp.Models;
+using Fit4You.WebApp.Models.Home;
 using Fit4You.WebApp.Models.Shared;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,12 +27,17 @@ namespace Fit4You.WebApp.Controllers
 
         public IActionResult Calculators()
         {
-            return View();
+            var model = new CalculatorsModel();
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult CalculateBMI(BMICalculatorModel model)
         {
+            if (ModelState.IsValid)
+            {
+                model.Result = 1;
+            }
             return PartialView("_BMICalculatorPartial", model);
         }
 
