@@ -19,7 +19,18 @@ namespace Fit4You.Core.Services
             var bmi = Math.Round((double)weightAbs / (heightInMeters * heightInMeters), 1);
             return bmi;
         }
-        
+
+        public double CalculateBMR(int weight, int height, int age, bool isMale)
+        {
+            //Mifflin - St Jeor Equation
+
+            int x = isMale ? 5 : -161;
+
+            double result = (10 * weight) + (6.25 * height) - (5 * age) + x;
+
+            return result;
+        }
+
         public string GetMeaningOfBMI(double bmi)
         {
             var meaning = "";
@@ -45,6 +56,5 @@ namespace Fit4You.Core.Services
             }
             return meaning;
         }
-        // Napisać kolejne kalkulatory
     }
 }

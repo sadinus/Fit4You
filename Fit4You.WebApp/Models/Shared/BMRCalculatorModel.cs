@@ -5,7 +5,7 @@ namespace Fit4You.WebApp.Models.Shared
     public class BMRCalculatorModel
     {
         [Required(ErrorMessage = "Please choose your gender")]
-        public bool? IsMan { get; set; }
+        public bool? IsMale { get; set; }
 
         [Range(30, int.MaxValue, ErrorMessage = "Minimal value is {1}")]
         public int Weight { get; set; }
