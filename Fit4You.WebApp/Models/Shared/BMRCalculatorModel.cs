@@ -6,10 +6,19 @@ namespace Fit4You.WebApp.Models.Shared
     {
         [Required(ErrorMessage = "Please choose your gender")]
         public bool? IsMan { get; set; }
-        public int Height { get; set; }
+
+        [Range(30, int.MaxValue, ErrorMessage = "Minimal value is {1}")]
         public int Weight { get; set; }
+
+        [Range(100, int.MaxValue, ErrorMessage = "Minimal value is {1}")]
+        public int Height { get; set; }
+
+        [Range(18, int.MaxValue, ErrorMessage = "Minimal value is {1}")]
         public int Age { get; set; }
+
+        [Required(ErrorMessage = "Please select your activity")]
         public ActivityType ActivityType { get; set; }
+
         public double Result { get; set; }
     }
 

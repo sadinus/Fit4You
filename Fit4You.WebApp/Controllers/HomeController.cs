@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using AutoMapper;
 using Fit4You.Core.Data;
-using Fit4You.Core.Domain;
+using Fit4You.Core.Services;
 using Fit4You.WebApp.Models;
 using Fit4You.WebApp.Models.Home;
 using Fit4You.WebApp.Models.Shared;
@@ -13,11 +13,13 @@ namespace Fit4You.WebApp.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICalculatorService _calculatorService;
 
-        public HomeController(IMapper mapper, IUnitOfWork unitOfWork)
+        public HomeController(IMapper mapper, IUnitOfWork unitOfWork, ICalculatorService calculatorService)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _calculatorService = calculatorService;
         }
 
         public IActionResult Index()
@@ -36,7 +38,8 @@ namespace Fit4You.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Result = 1;
+                model.Result = _calculatorService.CalculateBMI(model.Weight, model.Height);
+                model.BMIMeaning = _calculatorService.GetMeaningOfBMI(model.Result);
             }
             return PartialView("_BMICalculatorPartial", model);
         }
@@ -44,6 +47,11 @@ namespace Fit4You.WebApp.Controllers
         [HttpPost]
         public IActionResult CalculateBMR(BMRCalculatorModel model)
         {
+            if (ModelState.IsValid)
+            {
+                // Calculate BMR
+                // GET Meaning
+            }
             return PartialView("_BMRCalculatorPartial", model);
         }
 

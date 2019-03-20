@@ -10,12 +10,12 @@
     <div class="form-group" id="BMRCalculatorRadios">
         <label asp-for="IsMan" class="control-label d-block">Gender</label>
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="bmrIsManRadioTrue" name="IsMan" class="custom-control-input" value="true" checked="@(Model.IsMan)" />
-            <label class="custom-control-label" for="bmrIsManRadioTrue">Man</label>
+            <input type="radio" id="isManRadioTrue" name="IsMan" class="custom-control-input" value="true" checked="@(Model.IsMan)">
+            <label class="custom-control-label" for="isManRadioTrue">Male</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="bmrIsManRadioFalse" name="IsMan" class="custom-control-input" value="false" checked="@(!Model.IsMan)" />
-            <label class="custom-control-label" for="bmrIsManRadioFalse">Woman</label>
+            <input type="radio" id="IsManRadioFalse" name="IsMan" class="custom-control-input" value="false" checked="@(!Model.IsMan)">
+            <label class="custom-control-label" for="IsManRadioFalse">Female</label>
         </div>
         <span asp-validation-for="IsMan" class="text-danger d-block"></span>
     </div>
