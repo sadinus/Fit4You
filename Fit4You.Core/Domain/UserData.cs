@@ -12,6 +12,5 @@ namespace Fit4You.Core.Domain
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
         public Gender Gender { get; set; }
-        public ActivityType ActivityType { get; set; }
     }
 }
