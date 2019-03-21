@@ -16,9 +16,6 @@ namespace Fit4You.WebApp.Models.Shared
         [Range(18, int.MaxValue, ErrorMessage = "Minimal value is {1}")]
         public int Age { get; set; }
 
-        [Required(ErrorMessage = "Please select your activity")]
-        public ActivityType ActivityType { get; set; }
-
         public double Result { get; set; }
     }
 
