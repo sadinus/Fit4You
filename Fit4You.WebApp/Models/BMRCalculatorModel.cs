@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fit4You.WebApp.Models.Shared
+namespace Fit4You.WebApp.Models
 {
     public class BMRCalculatorModel
     {

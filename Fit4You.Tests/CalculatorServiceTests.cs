@@ -30,15 +30,5 @@ namespace Fit4You.Tests
 
             Assert.Equal(actual, expected);
         }
-
-        //[Fact]
-        //public void CalculateBMR_UserIsMale_WorksFine()
-        //{
-        //    var calculator = new CalculatorService();
-
-        //    var result = calculator.CalculateBMR();
-
-        //    Assert.
-        //}
     }
 }

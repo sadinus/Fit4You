@@ -9,8 +9,8 @@ namespace Fit4You.Core.Domain
         public int Id { get; set; }
         public int UserID { get; set; }
         public int Age { get; set; }
-        public decimal Height { get; set; }
-        public decimal Weight { get; set; }
-        public Gender Gender { get; set; }
+        public int Height { get; set; }
+        public int Weight { get; set; }
+        public bool isMale { get; set; }
     }
 }

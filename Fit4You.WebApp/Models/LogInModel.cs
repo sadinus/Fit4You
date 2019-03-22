@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fit4You.WebApp.Models.Auth
+namespace Fit4You.WebApp.Models
 {
-    public class SignUpModel
+    public class LogInModel
     {
         [EmailAddress(ErrorMessage = "This is not an email address")]
         [Required(ErrorMessage = "Enter your email")]
@@ -10,9 +10,5 @@ namespace Fit4You.WebApp.Models.Auth
 
         [Required(ErrorMessage = "Enter your password")]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "Enter your password again")]
-        [Compare("Password", ErrorMessage = "Password does not match")]
-        public string RepeatPassword { get; set; }
     }
 }
