@@ -17,7 +17,7 @@ namespace Fit4You.Core.Services
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> AddUser(string email, string password)
+        public Task<(bool result, int userId)> AddUser(string email, string password)
         {
             var emailLower = email.ToLowerInvariant();
 
@@ -25,12 +25,12 @@ namespace Fit4You.Core.Services
 
             if (userExists)
             {
-                return Task.FromResult(false);
+                return Task.FromResult((false, 0));
             }
             var entity = new User(emailLower, BCrypt.Net.BCrypt.HashPassword(password));
             _unitOfWork.UserRepository.Add(entity);
             _unitOfWork.Commit();
-            return Task.FromResult(true);
+            return Task.FromResult((true, entity.Id));
         }
 
         public Task<bool> ValidateCredentials(string email, string password, out User user)

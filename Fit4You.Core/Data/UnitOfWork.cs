@@ -8,33 +8,33 @@ namespace Fit4You.Core.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly Fit4YouDbContext _context;
-        private IUserRepository _userRepository;
-        private IGenericRepository<UserData> _userDataRepository;
+        private readonly Fit4YouDbContext context;
+        private IUserRepository userRepository;
+        private IUserDataRepository userDataRepository;
         public UnitOfWork(Fit4YouDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public IUserRepository UserRepository
         {
             get
             {
-                return _userRepository = _userRepository ?? new UserRepository(_context);
+                return userRepository = userRepository ?? new UserRepository(context);
             }
         }
 
-        public IGenericRepository<UserData> UserDataRepository
+        public IUserDataRepository UserDataRepository
         {
             get
             {
-                return _userDataRepository = _userDataRepository ?? new GenericRepository<UserData>(_context);
+                return userDataRepository = userDataRepository ?? new UserDataRepository(context);
             }
         }
 
         public void Commit()
         {
-            _context.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

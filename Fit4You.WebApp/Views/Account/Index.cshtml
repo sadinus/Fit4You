@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Fit4You.WebApp.Models.UserInformationDisplayModel
+
+<div class="starter-template">
+    <h1>Welcome @User.Identity.Name</h1>
+    <p class="lead">Here are your account information</p>
+    <div class="col-md-6">
+        <div class="form-group row">
+            <label asp-for="Gender" class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly asp-for="Gender" value="@Model.Gender">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="AgeDisplay" class="col-sm-2 col-form-label">Age</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly asp-for="AgeDisplay" value="@Model.AgeDisplay">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="HeightDisplay" class="col-sm-2 col-form-label">Height</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly asp-for="HeightDisplay" value="@Model.HeightDisplay">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="WeightDisplay" class="col-sm-2 col-form-label">Weight</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly asp-for="WeightDisplay" value="@Model.WeightDisplay">
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <label asp-for="BMI" class="col-sm-2 col-form-label">BMI</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly asp-for="BMI" value="@Model.BMI">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="BMR" class="col-sm-2 col-form-label">BMR</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly asp-for="BMR" value="@Model.BMR">
+            </div>
+        </div>
+    </div>
+</div>

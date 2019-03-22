@@ -9,6 +9,6 @@ namespace Fit4You.Core.Services
     public interface IUserService
     {
         Task<bool> ValidateCredentials(string email, string password, out User user);
-        Task<bool> AddUser(string email, string password);
+        Task<(bool result, int userId)> AddUser(string email, string password);
     }
 }

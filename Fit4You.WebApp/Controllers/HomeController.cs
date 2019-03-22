@@ -3,23 +3,21 @@ using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Services;
 using Fit4You.WebApp.Models;
-using Fit4You.WebApp.Models.Home;
-using Fit4You.WebApp.Models.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fit4You.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ICalculatorService _calculatorService;
+        private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ICalculatorService calculatorService;
 
         public HomeController(IMapper mapper, IUnitOfWork unitOfWork, ICalculatorService calculatorService)
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
-            _calculatorService = calculatorService;
+            this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
+            this.calculatorService = calculatorService;
         }
 
         public IActionResult Index()
@@ -38,8 +36,8 @@ namespace Fit4You.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Result = _calculatorService.CalculateBMI(model.Weight, model.Height);
-                model.BMIMeaning = _calculatorService.GetMeaningOfBMI(model.Result);
+                model.Result = calculatorService.CalculateBMI(model.Weight, model.Height);
+                model.BMIMeaning = calculatorService.GetMeaningOfBMI(model.Result);
             }
             return PartialView("_BMICalculatorPartial", model);
         }
@@ -49,7 +47,7 @@ namespace Fit4You.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Result = _calculatorService.CalculateBMR(model.Weight, model.Height, model.Age, (bool)model.IsMale);
+                model.Result = calculatorService.CalculateBMR(model.Weight, model.Height, model.Age, (bool)model.IsMale);
             }
             return PartialView("_BMRCalculatorPartial", model);
         }
