@@ -23,11 +23,11 @@ namespace Fit4You.Tests
 
             mockUserRepository.Setup(x => x.UserWithGivenEmailExists(
                 It.IsAny<string>())).Returns((string s) => users.Any(
-                    x => x.Email == s.ToLowerInvariant()));
+                    x => x.Email.ToLowerInvariant() == s.ToLowerInvariant()));
 
             mockUserRepository.Setup(x => x.GetByEmail(
                 It.IsAny<string>())).Returns((string s) => users.FirstOrDefault(
-                    x => x.Email == s.ToLowerInvariant()));
+                    x => x.Email.ToLowerInvariant() == s.ToLowerInvariant()));
 
             this.MockUserRepository = mockUserRepository.Object;
         }
@@ -37,10 +37,9 @@ namespace Fit4You.Tests
 
         [Theory]
         [InlineData("test@gmail.com")]
-        [InlineData("TestUser")]
-        public void CheckCredentials_ForExistingUser_ShouldWork(string emailOrUsername)
+        public void CheckCredentials_ForExistingUser_ShouldWork(string email)
         {
-            var actual = MockUserRepository.UserWithGivenEmailExists(emailOrUsername);
+            var actual = MockUserRepository.UserWithGivenEmailExists(email);
 
             Assert.True(actual);
         }

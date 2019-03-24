@@ -15,7 +15,7 @@ namespace Fit4You.Core.Data.Repositories
 
         void Add(TEntity entity);
 
-        void Update(int id, TEntity entity);
+        void Update(TEntity entity);
 
         void Delete(int id);
     }

@@ -1,11 +1,11 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Domain;
 using Fit4You.Core.Services;
 using Fit4You.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Fit4You.WebApp.Controllers
 {
@@ -25,13 +25,20 @@ namespace Fit4You.WebApp.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult UserInformation()
+        {
             var userId = Int32.Parse(User.FindFirst("id").Value);
             var entity = unitOfWork.UserDataRepository.GetByUserId(userId);
             UserInformationDisplayModel model;
             if (entity != null)
             {
                 model = mapper.Map<UserData, UserInformationDisplayModel>(entity);
-                model.BMI = calculatorService.CalculateBMI(entity.Weight, entity.Height).ToString();
+                var bmi = calculatorService.CalculateBMI(entity.Weight, entity.Height);
+                model.BMI = bmi.ToString();
+                model.BMIMeaning = calculatorService.GetMeaningOfBMI(bmi);
                 model.BMR = calculatorService.CalculateBMR(entity.Weight, entity.Height, entity.Age, entity.isMale).ToString();
 
                 return View(model);
@@ -41,7 +48,7 @@ namespace Fit4You.WebApp.Controllers
             return View(model);
         }
 
-        public IActionResult UserInformation()
+        public IActionResult UserInformationEdit()
         {
             var userId = Int32.Parse(User.FindFirst("id").Value);
             var entity = unitOfWork.UserDataRepository.GetByUserId(userId);
@@ -56,11 +63,29 @@ namespace Fit4You.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult UserInformation(UserInformationModel model)
+        public IActionResult UserInformationEdit(UserInformationModel model)
         {
             if (ModelState.IsValid)
             {
-                //unitOfWork.UserDataRepository.Add();
+                var userId = Int32.Parse(User.FindFirst("id").Value);
+                var entity = unitOfWork.UserDataRepository.GetByUserId(userId);
+
+                if (entity != null)
+                {
+                    mapper.Map<UserInformationModel, UserData>(model, entity);
+                    unitOfWork.UserDataRepository.Update(entity);
+
+                }
+                else
+                {
+                    mapper.Map<UserInformationModel, UserData>(model, entity);
+                    entity.UserID = userId;
+                    unitOfWork.UserDataRepository.Add(entity);
+                }
+
+                unitOfWork.Commit();
+
+                return RedirectToAction(nameof(UserInformation));
             }
             return View(model);
         }

@@ -34,7 +34,7 @@ namespace Fit4You.Core.Data.Repositories
             _dbContext.Set<TEntity>().Add(entity);
         }
 
-        public void Update(int id, TEntity entity)
+        public void Update(TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);
         }

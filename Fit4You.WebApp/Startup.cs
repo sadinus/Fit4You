@@ -45,7 +45,7 @@ namespace Fit4You.WebApp
             services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICalculatorService, CalculatorService>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAuthService, AuthService>();
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
