@@ -14,9 +14,9 @@ namespace Fit4You.WebApp.Controllers
 {
     public class AuthController : Controller
     {
-        private IUserService userService;
+        private IAuthService userService;
 
-        public AuthController(IUserService userService)
+        public AuthController(IAuthService userService)
         {
             this.userService = userService;
         }

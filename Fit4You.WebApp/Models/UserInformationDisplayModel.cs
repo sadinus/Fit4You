@@ -28,6 +28,7 @@ namespace Fit4You.WebApp.Models
         public string HeightDisplay { get; set; }
         
         public string BMI { get; set; }
+        public string BMIMeaning { get; set; }
         public string BMR { get; set; }
     }
 }

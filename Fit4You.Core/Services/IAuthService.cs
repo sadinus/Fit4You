@@ -6,7 +6,7 @@ using Fit4You.Core.Domain;
 
 namespace Fit4You.Core.Services
 {
-    public interface IUserService
+    public interface IAuthService
     {
         Task<bool> ValidateCredentials(string email, string password, out User user);
         Task<(bool result, int userId)> AddUser(string email, string password);

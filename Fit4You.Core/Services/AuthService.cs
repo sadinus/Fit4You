@@ -8,11 +8,11 @@ using Fit4You.Core.Domain;
 
 namespace Fit4You.Core.Services
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private IUnitOfWork _unitOfWork;
 
-        public UserService(IUnitOfWork unitOfWork)
+        public AuthService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

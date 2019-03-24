@@ -17,6 +17,11 @@ namespace Fit4You.WebApp
                 .ForMember(dest => dest.AgeDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Age.ToString()) ? "Unknown" : src.Age.ToString()))
                 .ForMember(dest => dest.HeightDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Height.ToString()) ? "Unknown" : src.Age.ToString()))
                 .ForMember(dest => dest.WeightDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Weight.ToString()) ? "Unknown" : src.Weight.ToString()));
+
+            CreateMap<UserInformationModel, UserData>()
+                .ForMember(dest => dest.isMale, x => x.MapFrom(src => (bool)src.IsMale))
+                .ForMember(dest => dest.Weight, x => x.MapFrom(src => (decimal)src.Weight))
+                .ForMember(dest => dest.Height, x => x.MapFrom(src => (decimal)src.Height));
         }
     }
 }
