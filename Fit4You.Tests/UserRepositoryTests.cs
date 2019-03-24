@@ -37,7 +37,7 @@ namespace Fit4You.Tests
 
         [Theory]
         [InlineData("test@gmail.com")]
-        public void CheckCredentials_ForExistingUser_ShouldWork(string email)
+        public void UserWithGivenEmailExists_ForExistingUser_ShouldWork(string email)
         {
             var actual = MockUserRepository.UserWithGivenEmailExists(email);
 

@@ -1,8 +1,8 @@
 ﻿@model Fit4You.WebApp.Models.UserInformationDisplayModel
 
-<div class="starter-template">
-    <p class="lead">Here are your account information</p>
-    <div class="col-md-6">
+<div class="row">
+    <div class="col-md-5">
+        <p class="lead">Account information</p>
         <div class="form-group row">
             <label asp-for="Gender" class="col-sm-2 col-form-label">Gender</label>
             <div class="col-sm-10">
@@ -41,5 +41,12 @@
             </div>
         </div>
         <a class="btn btn-primary" href="@Url.Action("UserInformationEdit")">Edit</a>
+    </div>
+    <div class="col-md-5 offset-2">
+        <p class="lead">Mailing preferences</p>
+        <span class="switch">
+            <input type="checkbox" class="switch" id="switch-id">
+            <label for="switch-id">Small switch</label>
+        </span>
     </div>
 </div>
