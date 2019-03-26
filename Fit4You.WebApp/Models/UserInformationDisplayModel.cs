@@ -21,7 +21,6 @@ namespace Fit4You.WebApp.Models
             HeightDisplay = defaultValue;
             BMI = defaultValue;
             BMR = defaultValue;
-            IsSubscribed = currentUser.IsSubscribed;
         }
 
         public string Gender { get; set; }

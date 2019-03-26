@@ -3,14 +3,16 @@ using Fit4You.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fit4You.Core.Migrations
 {
     [DbContext(typeof(Fit4YouDbContext))]
-    partial class Fit4YouDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190326174802_Przeniesienie pola IsSubscribed z tabeli User do tabeli UserData")]
+    partial class PrzeniesieniepolaIsSubscribedztabeliUserdotabeliUserData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
