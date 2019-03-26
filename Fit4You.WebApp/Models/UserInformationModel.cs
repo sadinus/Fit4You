@@ -19,5 +19,7 @@ namespace Fit4You.WebApp.Models
 
         [Range(100, int.MaxValue, ErrorMessage = "Minimal value is {1}")]
         public decimal Height { get; set; }
+
+        public bool IsSubscribed { get; set; }
     }
 }
