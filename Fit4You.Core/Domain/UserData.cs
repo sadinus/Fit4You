@@ -12,5 +12,6 @@ namespace Fit4You.Core.Domain
         public int Height { get; set; }
         public int Weight { get; set; }
         public bool isMale { get; set; }
+        public bool IsSubscribed { get; set; }
     }
 }

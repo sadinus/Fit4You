@@ -16,14 +16,14 @@ namespace Fit4You.WebApp.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
         private readonly ICalculatorService calculatorService;
-        private readonly User currentUser;
+        private User GetCurrentUser() => unitOfWork.UserRepository.GetById(Int32.Parse(User.FindFirst("id").Value));
+
 
         public AccountController(IUnitOfWork unitOfWork, IMapper mapper, ICalculatorService calculatorService)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
             this.calculatorService = calculatorService;
-            currentUser = unitOfWork.UserRepository.GetById(Int32.Parse(User.FindFirst("id").Value));
         }
 
         public IActionResult Index()
@@ -33,7 +33,7 @@ namespace Fit4You.WebApp.Controllers
 
         public IActionResult UserInformation()
         {
-            var entity = unitOfWork.UserDataRepository.GetByUserId(currentUser.Id);
+            var entity = unitOfWork.UserDataRepository.GetByUserId(GetCurrentUser().Id);
             UserInformationDisplayModel model;
             if (entity != null)
             {
@@ -46,13 +46,13 @@ namespace Fit4You.WebApp.Controllers
                 return View(model);
             }
 
-            model = new UserInformationDisplayModel("Unknown", currentUser);
+            model = new UserInformationDisplayModel("Unknown", GetCurrentUser());
             return View(model);
         }
 
         public IActionResult UserInformationEdit()
         {
-            var entity = unitOfWork.UserDataRepository.GetByUserId(currentUser.Id);
+            var entity = unitOfWork.UserDataRepository.GetByUserId(GetCurrentUser().Id);
 
             if (entity != null)
             {
@@ -68,7 +68,7 @@ namespace Fit4You.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = unitOfWork.UserDataRepository.GetByUserId(currentUser.Id);
+                var entity = unitOfWork.UserDataRepository.GetByUserId(GetCurrentUser().Id);
 
                 if (entity != null)
                 {
@@ -79,7 +79,7 @@ namespace Fit4You.WebApp.Controllers
                 {
                     entity = new UserData();
                     mapper.Map<UserInformationModel, UserData>(model, entity);
-                    entity.UserID = currentUser.Id;
+                    entity.UserID = GetCurrentUser().Id;
                     unitOfWork.UserDataRepository.Add(entity);
                 }
 
