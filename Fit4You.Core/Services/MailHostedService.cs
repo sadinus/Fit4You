@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Fit4You.Core.Services;
 using Microsoft.Extensions.Hosting;
 
-namespace Fit4You.Core.Utilities
+namespace Fit4You.Core.Services
 {
     public class MailHostedService : IHostedService
     {

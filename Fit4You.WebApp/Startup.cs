@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Services;
-using Fit4You.Core.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
