@@ -15,7 +15,7 @@ namespace Fit4You.WebApp
             CreateMap<UserData, UserInformationDisplayModel>()
                 .ForMember(dest => dest.Gender, x => x.MapFrom(src => src.isMale ? "Male" : "Female"))
                 .ForMember(dest => dest.AgeDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Age.ToString()) ? "Unknown" : src.Age.ToString()))
-                .ForMember(dest => dest.HeightDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Height.ToString()) ? "Unknown" : src.Age.ToString()))
+                .ForMember(dest => dest.HeightDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Height.ToString()) ? "Unknown" : src.Height.ToString()))
                 .ForMember(dest => dest.WeightDisplay, x => x.MapFrom(src => String.IsNullOrEmpty(src.Weight.ToString()) ? "Unknown" : src.Weight.ToString()));
 
             CreateMap<UserInformationModel, UserData>()

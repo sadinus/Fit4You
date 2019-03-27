@@ -17,12 +17,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Quartz" Version="3.0.7" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\" />
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.hosting.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

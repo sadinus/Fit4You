@@ -27,10 +27,14 @@ namespace Fit4You.Core.Services
             {
                 return Task.FromResult((false, 0));
             }
-            var entity = new User(emailLower, BCrypt.Net.BCrypt.HashPassword(password));
-            _unitOfWork.UserRepository.Add(entity);
+            var userEntity = new User(emailLower, BCrypt.Net.BCrypt.HashPassword(password));
+            _unitOfWork.UserRepository.Add(userEntity);
+
+            var userDataEntity = new UserData(userEntity.Id);
+            _unitOfWork.UserDataRepository.Add(userDataEntity);
+
             _unitOfWork.Commit();
-            return Task.FromResult((true, entity.Id));
+            return Task.FromResult((true, userEntity.Id));
         }
 
         public Task<bool> ValidateCredentials(string email, string password, out User user)

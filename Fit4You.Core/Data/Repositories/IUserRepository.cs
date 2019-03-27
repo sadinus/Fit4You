@@ -1,4 +1,5 @@
-﻿using Fit4You.Core.Domain;
+﻿using System.Collections.Generic;
+using Fit4You.Core.Domain;
 
 namespace Fit4You.Core.Data.Repositories
 {
@@ -6,5 +7,6 @@ namespace Fit4You.Core.Data.Repositories
     {
         bool UserWithGivenEmailExists(string email);
         User GetByEmail(string username);
+        List<User> FindUsersWithSubscription();
     }
 }

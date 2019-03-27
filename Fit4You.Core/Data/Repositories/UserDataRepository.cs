@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Fit4You.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fit4You.Core.Data.Repositories
 {
@@ -16,7 +17,7 @@ namespace Fit4You.Core.Data.Repositories
 
         public UserData GetByUserId(int id)
         {
-            return dbContext.UserData.FirstOrDefault(x => x.UserID == id);
+            return dbContext.UserData.AsNoTracking().FirstOrDefault(x => x.UserID == id);
         }
     }
 }
