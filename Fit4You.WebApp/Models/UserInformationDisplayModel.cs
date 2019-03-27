@@ -13,7 +13,7 @@ namespace Fit4You.WebApp.Models
 
         }
 
-        public UserInformationDisplayModel(string defaultValue, User currentUser)
+        public UserInformationDisplayModel(string defaultValue)
         {
             Gender = defaultValue;
             AgeDisplay = defaultValue;
@@ -21,6 +21,7 @@ namespace Fit4You.WebApp.Models
             HeightDisplay = defaultValue;
             BMI = defaultValue;
             BMR = defaultValue;
+            IsSubscribed = true;
         }
 
         public string Gender { get; set; }

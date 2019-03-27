@@ -46,7 +46,7 @@ namespace Fit4You.WebApp.Controllers
                 return View(model);
             }
 
-            model = new UserInformationDisplayModel("Unknown", GetCurrentUser());
+            model = new UserInformationDisplayModel("Unknown");
             return View(model);
         }
 
@@ -56,11 +56,13 @@ namespace Fit4You.WebApp.Controllers
 
             if (entity != null)
             {
-                var model = mapper.Map<UserData, UserInformationModel>(entity);
-                return View(model);
+                var invalidModel = mapper.Map<UserData, UserInformationModel>(entity);
+                return View(invalidModel);
             }
 
-            return View();
+            var model = new UserInformationModel();
+            model.IsSubscribed = true;
+            return View(model);
         }
 
         [HttpPost]
