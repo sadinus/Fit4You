@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Fit4You.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fit4You.Core.Data.Repositories
 {
@@ -21,7 +22,15 @@ namespace Fit4You.Core.Data.Repositories
 
         public User GetByEmail(string email)
         {
-            return dbContext.User.FirstOrDefault(x => x.Email == email);
+            return dbContext.User.AsNoTracking().FirstOrDefault(x => x.Email == email);
+        }
+
+        public List<User> FindUsersWithSubscription()
+        {
+            return dbContext.User.AsNoTracking()
+                                 .Include(x => x.UserInfo)
+                                 .Where(x => x.UserInfo.IsSubscribed == true)
+                                 .ToList();
         }
     }
 }

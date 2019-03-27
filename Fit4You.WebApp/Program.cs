@@ -16,7 +16,6 @@ namespace Fit4You.WebApp
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
-            JobScheduler.Start();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
