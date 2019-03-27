@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Fit4You.Core.Utilities;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ namespace Fit4You.WebApp
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+            JobScheduler.Start();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
