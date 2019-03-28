@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Fit4You.Core.Data;
 using Fit4You.Core.Services;
+using Fit4You.Core.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +34,7 @@ namespace Fit4You.WebApp
 
             // Database Configurations
             services.AddDbContext<Fit4YouDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Fit4YouConnectionString")), ServiceLifetime.Singleton);
+                options.UseSqlServer(Configuration.GetConnectionString("Fit4YouConnectionString")));
 
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
@@ -43,12 +44,13 @@ namespace Fit4You.WebApp
             IMapper mapper = mappingConfig.CreateMapper();
 
             services.AddSingleton(mapper);
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ICalculatorService, CalculatorService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IMailService, MailService>();
 
-            services.AddHostedService<MailHostedService>();
+            services.AddHostedService<ConsumeScopedMailService>();
+            services.AddScoped<IScopedMailService, ScopedMailService>();
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
