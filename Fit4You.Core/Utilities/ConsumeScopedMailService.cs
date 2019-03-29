@@ -13,13 +13,11 @@ namespace Fit4You.Core.Utilities
     public class ConsumeScopedMailService : IHostedService
     {
         private Timer timer;
-        private readonly IMailService mailService;
         public IServiceProvider Services { get; }
 
-        public ConsumeScopedMailService(IServiceProvider services, IMailService mailService)
+        public ConsumeScopedMailService(IServiceProvider services)
         {
             Services = services;
-            this.mailService = mailService;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -55,8 +53,8 @@ namespace Fit4You.Core.Utilities
         private TimeSpan GetStartTimeSpan()
         {
             var currentTime = DateTime.Now.Ticks;
-            var executeTime = DateTime.Today.AddHours(8)
-                                            .AddMinutes(0)
+            var executeTime = DateTime.Today.AddHours(10)
+                                            .AddMinutes(52)
                                             .Ticks;
 
             long ticks = executeTime - currentTime;
