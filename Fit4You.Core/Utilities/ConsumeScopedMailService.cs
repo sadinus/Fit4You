@@ -13,18 +13,19 @@ namespace Fit4You.Core.Utilities
     public class ConsumeScopedMailService : IHostedService
     {
         private Timer timer;
-        private readonly IMailService mailService;
         public IServiceProvider Services { get; }
 
-        public ConsumeScopedMailService(IServiceProvider services, IMailService mailService)
+        public ConsumeScopedMailService(IServiceProvider services)
         {
             Services = services;
-            this.mailService = mailService;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+            var startTimeSpan = GetStartTimeSpan();
+            var periodTimeSpan = TimeSpan.FromSeconds(30);
+
+            timer = new Timer(DoWork, null, startTimeSpan, periodTimeSpan);
 
             return Task.CompletedTask;
         }
@@ -47,6 +48,25 @@ namespace Fit4You.Core.Utilities
         public void Dispose()
         {
             timer?.Dispose();
+        }
+
+        private TimeSpan GetStartTimeSpan()
+        {
+            var currentTime = DateTime.Now.Ticks;
+            var executeTime = DateTime.Today.AddHours(10)
+                                            .AddMinutes(52)
+                                            .Ticks;
+
+            long ticks = executeTime - currentTime;
+
+            if (ticks < 0)
+            {
+                ticks = ticks + TimeSpan.TicksPerDay;
+            }
+
+            var startTimeSpan = new TimeSpan(ticks);
+
+            return startTimeSpan;
         }
     }
 }
