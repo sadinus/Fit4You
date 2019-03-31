@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Fit4You.Core.Domain;
 
-namespace Fit4You.Core.Services
+namespace Fit4You.Core.Services.Security
 {
     public interface IAuthService
     {

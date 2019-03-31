@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Fit4You.Core.Domain;
-using Fit4You.Core.Services;
+﻿using Fit4You.Core.Domain;
+using Fit4You.Core.Services.Security;
 using Fit4You.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Fit4You.WebApp.Controllers
 {
