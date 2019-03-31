@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fit4You.Core.Services
+namespace Fit4You.Core.Services.Mail
 {
     public interface IMailService
     {

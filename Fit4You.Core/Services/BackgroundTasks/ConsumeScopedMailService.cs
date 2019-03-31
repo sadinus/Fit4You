@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Fit4You.Core.Utilities
+namespace Fit4You.Core.BackgroundTasks
 {
     public class ConsumeScopedMailService : IHostedService
     {

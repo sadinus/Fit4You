@@ -4,8 +4,9 @@ using System.Text;
 using System.Net;
 using System.Net.Mail;
 using Fit4You.Core.Data;
+using System.IO;
 
-namespace Fit4You.Core.Services
+namespace Fit4You.Core.Services.Mail
 {
     public class MailService : IMailService
     {
@@ -19,7 +20,9 @@ namespace Fit4You.Core.Services
         {
             var users = unitOfWork.UserRepository.FindUsersWithSubscription();
 
-            SendNewsletterMail("p_pindelski@o2.pl");
+            var mailMessage = SendNewsletterMail("p_pindelski@o2.pl");
+
+            SaveLocalCopyOf(mailMessage);
 
             //foreach (var user in users)
             //{
@@ -27,7 +30,7 @@ namespace Fit4You.Core.Services
             //}
         }
 
-        private void SendNewsletterMail(string email)
+        private MailMessage SendNewsletterMail(string email)
         {
             var fromAddress = new MailAddress("fit4youmail@gmail.com", "Fit4You");
             var toAddress = new MailAddress(email);
@@ -52,7 +55,21 @@ namespace Fit4You.Core.Services
             })
             {
                 smtp.Send(message);
+                return message;
             }
+        }
+
+        private void SaveLocalCopyOf(MailMessage mailMessage)
+        {
+            var dir = @"C:/temp/smtp-spool";
+            var filename = $"email_{DateTime.Now.ToString("dd-MM-yyyy_HH:mm")}_{mailMessage.To}.htm";
+
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            File.WriteAllText($@"{dir}/{filename}", mailMessage.Body, Encoding.UTF8);
         }
     }
 }

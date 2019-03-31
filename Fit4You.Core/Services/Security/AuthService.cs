@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Fit4You.Core.Data;
 using Fit4You.Core.Domain;
 
-namespace Fit4You.Core.Services
+namespace Fit4You.Core.Services.Security
 {
     public class AuthService : IAuthService
     {
