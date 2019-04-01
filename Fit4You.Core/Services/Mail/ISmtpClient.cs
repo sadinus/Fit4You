@@ -7,6 +7,6 @@ namespace Fit4You.Core.Services.Mail
 {
     public interface ISmtpClient
     {
-        void Send(MailMessage message);
+        void SendMail(string email, string subject, string body);
     }
 }

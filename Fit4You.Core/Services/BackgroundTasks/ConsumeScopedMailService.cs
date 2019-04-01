@@ -23,7 +23,7 @@ namespace Fit4You.Core.BackgroundTasks
         public Task StartAsync(CancellationToken cancellationToken)
         {
             var startTimeSpan = GetStartTimeSpan();
-            var periodTimeSpan = TimeSpan.FromSeconds(30);
+            var periodTimeSpan = TimeSpan.FromDays(1);
 
             timer = new Timer(DoWork, null, startTimeSpan, periodTimeSpan);
 
@@ -32,6 +32,8 @@ namespace Fit4You.Core.BackgroundTasks
 
         private void DoWork(object state)
         {
+            var now = DateTime.Now;
+
             using (var scope = Services.CreateScope())
             {
                 var scopedMailService = scope.ServiceProvider.GetRequiredService<IScopedMailService>();
@@ -53,8 +55,8 @@ namespace Fit4You.Core.BackgroundTasks
         private TimeSpan GetStartTimeSpan()
         {
             var currentTime = DateTime.Now.Ticks;
-            var executeTime = DateTime.Today.AddHours(10)
-                                            .AddMinutes(52)
+            var executeTime = DateTime.Today.AddHours(17)
+                                            .AddMinutes(22)
                                             .Ticks;
 
             long ticks = executeTime - currentTime;

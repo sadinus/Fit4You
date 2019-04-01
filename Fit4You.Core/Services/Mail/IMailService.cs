@@ -7,5 +7,6 @@ namespace Fit4You.Core.Services.Mail
     public interface IMailService
     {
         void SendNewsletterToSubscribedUsers();
+        void SendTestMail();
     }
 }

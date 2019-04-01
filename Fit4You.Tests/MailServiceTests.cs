@@ -1,21 +1,22 @@
-﻿using Fit4You.Core.Services.Mail;
+﻿using System;
+using Fit4You.Core.BackgroundTasks;
+using Fit4You.Core.Services.Mail;
 using Fit4You.Core.Utilities;
 using Moq;
-using System;
 using Xunit;
 
 namespace Fit4You.Tests
 {
-    public class MailServiceTests
+    public class ScopedMailServiceTests
     {
-        public MailServiceTests()
+        public ScopedMailServiceTests()
         {
-            Mock<IMailService> mockMailService = new Mock<IMailService>();
+            Mock<IScopedMailService> mockScopedMailService = new Mock<IScopedMailService>();
 
-            this.MockScopedMailService = mockMailService.Object;
+            this.MockScopedMailService = mockScopedMailService.Object;
         }
 
-        public readonly IMailService MockScopedMailService;
+        public readonly IScopedMailService MockScopedMailService;
 
         [Theory]
         [InlineData(DayOfWeek.Monday)]
@@ -25,16 +26,16 @@ namespace Fit4You.Tests
         [InlineData(DayOfWeek.Friday)]
         public void SendNewsletterToSubscribedUsers_DuringWorkingDays_ShouldWork(DayOfWeek dayOfWeek)
         {
+            var mockMailService = new Mock<IMailService>();
+
             Mock<IDateTimeProvider> stubDateTimeProvider = new Mock<IDateTimeProvider>();
-            stubDateTimeProvider.Setup(x => x.DayOfWeek())
-                .Returns((DayOfWeek d) => dayOfWeek);
+            stubDateTimeProvider.Setup(x => x.DayOfWeek()).Returns(dayOfWeek);
 
-            Mock<ISmtpClient> mockSmtpClient = new Mock<ISmtpClient>();
-            EmailHelper emailHelper = new EmailHelper(mockSmtpClient.Object);
+            var sut = new ScopedMailService(mockMailService.Object, stubDateTimeProvider.Object);
 
-            MockScopedMailService.SendNewsletterToSubscribedUsers();
+            sut.DoWork();
 
-            Assert.True(fakeClient.MailSent);
+            mockMailService.Verify(x => x.SendTestMail(), Times.Once);
         }
 
         [Theory]
@@ -42,11 +43,16 @@ namespace Fit4You.Tests
         [InlineData(DayOfWeek.Sunday)]
         public void SendNewsletterToSubscribedUsers_DuringWeekend_ShouldFail(DayOfWeek dayOfWeek)
         {
-            Mock<IDateTimeProvider> mockDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockDateTimeProvider.Setup(x => x.DayOfWeek())
-                .Returns((DayOfWeek d) => dayOfWeek);
+            var mockMailService = new Mock<IMailService>();
 
-            MockScopedMailService.SendNewsletterToSubscribedUsers();
+            Mock<IDateTimeProvider> stubDateTimeProvider = new Mock<IDateTimeProvider>();
+            stubDateTimeProvider.Setup(x => x.DayOfWeek()).Returns(dayOfWeek);
+
+            var sut = new ScopedMailService(mockMailService.Object, stubDateTimeProvider.Object);
+
+            sut.DoWork();
+
+            mockMailService.Verify(x => x.SendTestMail(), Times.Never);
         }
     }
 }

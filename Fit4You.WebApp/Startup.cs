@@ -1,6 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Net;
+using System.Net.Mail;
+using AutoMapper;
+using Fit4You.Core.BackgroundTasks;
 using Fit4You.Core.Data;
 using Fit4You.Core.Services;
+using Fit4You.Core.Services.Mail;
+using Fit4You.Core.Services.Security;
 using Fit4You.Core.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -48,9 +54,13 @@ namespace Fit4You.WebApp
             services.AddTransient<ICalculatorService, CalculatorService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IMailService, MailService>();
+            services.AddTransient<ISmtpClient, SmtpClientWrapper>();
 
             services.AddHostedService<ConsumeScopedMailService>();
             services.AddScoped<IScopedMailService, ScopedMailService>();
+
+            // Utils
+            services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
