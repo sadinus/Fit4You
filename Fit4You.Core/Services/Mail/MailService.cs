@@ -5,71 +5,45 @@ using System.Net;
 using System.Net.Mail;
 using Fit4You.Core.Data;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace Fit4You.Core.Services.Mail
 {
     public class MailService : IMailService
     {
         private readonly IUnitOfWork unitOfWork;
-        public MailService(IUnitOfWork unitOfWork)
+        private readonly ISmtpClient smtpClientWrapper;
+
+        public MailService(IUnitOfWork unitOfWork, ISmtpClient smtpClientWrapper)
         {
             this.unitOfWork = unitOfWork;
+            this.smtpClientWrapper = smtpClientWrapper;
+        }
+
+        public void SendTestMail()
+        {
+            const string subject = "Test";
+            const string body = "Hi,<br>This is a test of sending emails.<br>Fit4You Team";
+
+            smtpClientWrapper.SendMail("p_pindelski@o2.pl", subject, body);
         }
 
         public void SendNewsletterToSubscribedUsers()
         {
             var users = unitOfWork.UserRepository.FindUsersWithSubscription();
 
-            var mailMessage = SendNewsletterMail("p_pindelski@o2.pl");
-
-            SaveLocalCopyOf(mailMessage);
-
-            //foreach (var user in users)
-            //{
-            //    SendNewsletterMail(user.Email);
-            //}
+            foreach (var user in users)
+            {
+                SendNewsletterTo(user.Email);
+            }
         }
 
-        private MailMessage SendNewsletterMail(string email)
+        private void SendNewsletterTo(string email)
         {
-            var fromAddress = new MailAddress("fit4youmail@gmail.com", "Fit4You");
-            var toAddress = new MailAddress(email);
-            const string fromPassword = "Fit4YouMail";
             const string subject = "Newsletter";
             const string body = "Hi,<br>Here is out newsletter that you are currently signed in.<br><br>Best Regards<br>Fit4You Team";
 
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            using (var message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            })
-            {
-                smtp.Send(message);
-                return message;
-            }
-        }
-
-        private void SaveLocalCopyOf(MailMessage mailMessage)
-        {
-            var dir = @"C:/temp/smtp-spool";
-            var filename = $"email_{DateTime.Now.ToString("dd-MM-yyyy_HH:mm")}_{mailMessage.To}.htm";
-
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-
-            File.WriteAllText($@"{dir}/{filename}", mailMessage.Body, Encoding.UTF8);
+            smtpClientWrapper.SendMail(email, subject, body);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Fit4You.Core.Services.Mail;
+using Fit4You.Core.Utilities;
 using System;
 
 namespace Fit4You.Core.BackgroundTasks
@@ -6,23 +7,27 @@ namespace Fit4You.Core.BackgroundTasks
     public class ScopedMailService : IScopedMailService
     {
         private readonly IMailService mailService;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public ScopedMailService(IMailService mailService)
+        public ScopedMailService(IMailService mailService, IDateTimeProvider dateTimeProvider)
         {
             this.mailService = mailService;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public void DoWork()
         {
-            if (!IsWeekend())
+            var dayOfWeek = dateTimeProvider.DayOfWeek();
+            if (!IsWeekend(dayOfWeek))
             {
-                mailService.SendNewsletterToSubscribedUsers();
+                //mailService.SendNewsletterToSubscribedUsers();
+                mailService.SendTestMail();
             }
         }
 
-        private bool IsWeekend()
+        private bool IsWeekend(DayOfWeek dayOfWeek)
         {
-            return DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday;
+            return dayOfWeek == DayOfWeek.Saturday || dayOfWeek == DayOfWeek.Sunday;
         }
     }
 }
