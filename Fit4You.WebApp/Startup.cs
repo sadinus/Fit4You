@@ -61,6 +61,7 @@ namespace Fit4You.WebApp
 
             // Utils
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();
+            services.AddTransient<IFileHelper, FileHelper>();
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
