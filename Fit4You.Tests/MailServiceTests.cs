@@ -9,15 +9,6 @@ namespace Fit4You.Tests
 {
     public class ScopedMailServiceTests
     {
-        public ScopedMailServiceTests()
-        {
-            Mock<IScopedMailService> mockScopedMailService = new Mock<IScopedMailService>();
-
-            this.MockScopedMailService = mockScopedMailService.Object;
-        }
-
-        public readonly IScopedMailService MockScopedMailService;
-
         [Theory]
         [InlineData(DayOfWeek.Monday)]
         [InlineData(DayOfWeek.Tuesday)]

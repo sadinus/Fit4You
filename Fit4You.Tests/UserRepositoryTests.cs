@@ -29,6 +29,11 @@ namespace Fit4You.Tests
                 It.IsAny<string>())).Returns((string s) => users.FirstOrDefault(
                     x => x.Email.ToLowerInvariant() == s.ToLowerInvariant()));
 
+            mockUserRepository.Setup(x => x.Add(
+                It.IsAny<User>())).Callback((User user) => users.Add(user));
+
+            mockUserRepository.Setup(x => x.FindAll()).Returns(users);
+
             this.MockUserRepository = mockUserRepository.Object;
         }
 
@@ -56,6 +61,25 @@ namespace Fit4You.Tests
 
             actual.Should().BeEquivalentTo(expected, options =>
                 options.Excluding(x => x.UserInfo));
+        }
+
+        [Fact]
+        public void Add_NewUser_ShouldWork()
+        {
+            var newUser = new User
+            {
+                Id = 0,
+                Email = "newuser@gmail.com",
+                PasswordHash = "Password"
+            };
+
+            var beforeAdd = MockUserRepository.FindAll().Count();
+
+            MockUserRepository.Add(newUser);
+
+            var afterAdd = MockUserRepository.FindAll().Count();
+
+            Assert.Equal(beforeAdd + 1, afterAdd);
         }
     }
 }

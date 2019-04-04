@@ -15,9 +15,23 @@ namespace Fit4You.Core.BackgroundTasks
             this.dateTimeProvider = dateTimeProvider;
         }
 
+        public ScopedMailService(IMailService mailService)
+        {
+            this.mailService = mailService;
+        }
+
         public void DoWork()
         {
             var dayOfWeek = dateTimeProvider.DayOfWeek();
+            if (!IsWeekend(dayOfWeek))
+            {
+                //mailService.SendNewsletterToSubscribedUsers();
+                mailService.SendTestMail();
+            }
+        }
+
+        public void DoWork(DayOfWeek dayOfWeek)
+        {
             if (!IsWeekend(dayOfWeek))
             {
                 //mailService.SendNewsletterToSubscribedUsers();

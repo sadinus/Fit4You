@@ -30,5 +30,38 @@ namespace Fit4You.Tests
 
             Assert.Equal(actual, expected);
         }
+
+        [Fact]
+        public void CalculateBMR_ForMale_ShouldWork()
+        {
+            var calculator = new CalculatorService();
+            var expected = 1876.25;
+
+            var actual = calculator.CalculateBMR(82, 189, 26, true);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateBMR_ForFemale_ShouldWork()
+        {
+            var calculator = new CalculatorService();
+            var expected = 1279;
+
+            var actual = calculator.CalculateBMR(55, 160, 22, false);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CalculateBMR_ForFemale_ShouldWorkV2()
+        {
+            var calculator = new CalculatorService();
+            var expected = -161;
+
+            var actual = calculator.CalculateBMR(0, 0, 0, false);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace Fit4You.Core.BackgroundTasks
         {
             var currentTime = DateTime.Now.Ticks;
             var executeTime = DateTime.Today.AddHours(09)
-                                            .AddMinutes(23)
+                                            .AddMinutes(51)
                                             .Ticks;
 
             long ticks = executeTime - currentTime;
