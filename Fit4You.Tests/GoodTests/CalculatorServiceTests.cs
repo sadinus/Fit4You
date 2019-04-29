@@ -2,7 +2,7 @@ using System;
 using Fit4You.Core.Services;
 using Xunit;
 
-namespace Fit4You.Tests
+namespace Fit4You.Tests.GoodTests
 {
     public class CalculatorServiceTests
     {

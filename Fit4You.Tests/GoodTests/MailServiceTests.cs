@@ -5,7 +5,7 @@ using Fit4You.Core.Utilities;
 using Moq;
 using Xunit;
 
-namespace Fit4You.Tests
+namespace Fit4You.Tests.GoodTests
 {
     public class ScopedMailServiceTests
     {

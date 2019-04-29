@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fit4You.Tests", "Fit4You.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fit4You.WebApp", "Fit4You.WebApp\Fit4You.WebApp.csproj", "{D0DB61E8-92CE-4982-A907-59F149C33338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fit4You.BadTests", "Fit4You.BadTests\Fit4You.BadTests.csproj", "{43C2DA26-5EB2-4DC8-BA53-4D1193BD08A6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{D0DB61E8-92CE-4982-A907-59F149C33338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0DB61E8-92CE-4982-A907-59F149C33338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0DB61E8-92CE-4982-A907-59F149C33338}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43C2DA26-5EB2-4DC8-BA53-4D1193BD08A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43C2DA26-5EB2-4DC8-BA53-4D1193BD08A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43C2DA26-5EB2-4DC8-BA53-4D1193BD08A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43C2DA26-5EB2-4DC8-BA53-4D1193BD08A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

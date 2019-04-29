@@ -4,13 +4,13 @@ using System.Linq;
 using Fit4You.Core.BackgroundTasks;
 using Fit4You.Core.Data.Repositories;
 using Fit4You.Core.Domain;
-using Fit4You.Core.ForFakeTests;
+using Fit4You.Core.Repositories;
 using Fit4You.Core.Services;
 using Fit4You.Core.Services.Mail;
 using Moq;
 using Xunit;
 
-namespace Fit4You.BadTests
+namespace Fit4You.Tests.BadTests
 {
     public class BadUnitTests
     {

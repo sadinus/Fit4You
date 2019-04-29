@@ -5,7 +5,7 @@ using Fit4You.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Fit4You.Core.ForFakeTests
+namespace Fit4You.Core.Repositories
 {
     public class FakeUserRepository
     {
