@@ -36,8 +36,12 @@ namespace Fit4You.Tests.GoodTests
         {
             var calculator = new CalculatorService();
             var expected = 1876.25;
+            const int WEIGHT = 82;
+            const int HEIGHT = 189;
+            const int AGE = 26;
+            const bool ISMALE = true;
 
-            var actual = calculator.CalculateBMR(82, 189, 26, true);
+            var actual = calculator.CalculateBMR(WEIGHT, HEIGHT, AGE, ISMALE);
 
             Assert.Equal(expected, actual);
         }
@@ -49,17 +53,6 @@ namespace Fit4You.Tests.GoodTests
             var expected = 1279;
 
             var actual = calculator.CalculateBMR(55, 160, 22, false);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void CalculateBMR_ForFemale_ShouldWorkV2()
-        {
-            var calculator = new CalculatorService();
-            var expected = -161;
-
-            var actual = calculator.CalculateBMR(0, 0, 0, false);
 
             Assert.Equal(expected, actual);
         }

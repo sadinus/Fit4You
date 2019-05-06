@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using Fit4You.Core.BackgroundTasks;
 using Fit4You.Core.Data.Repositories;
 using Fit4You.Core.Domain;
@@ -22,6 +23,28 @@ namespace Fit4You.Tests.BadTests
             var actual = calculator.CalculateBMR(82, 189, 26, true);
 
             Assert.Equal(1876.25, actual);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CalculateBMR_ForMaleOrFemale_ShouldWork(bool isMale)
+        {
+            var calculator = new CalculatorService();
+            double expected;
+
+            if (isMale)
+            {
+                expected = 1445;
+            }
+            else
+            {
+                expected = 1279;
+            }
+
+            var actual = calculator.CalculateBMR(55, 160, 22, isMale);
+
+            Assert.True(expected == actual);
         }
 
         [Fact]
@@ -125,6 +148,30 @@ namespace Fit4You.Tests.BadTests
             sut.DoWork(DateTime.Now.DayOfWeek);
 
             mockMailService.Verify(x => x.SendTestMail(), Times.Once);
+        }
+
+        [Fact]
+        public void SendMail_ForAnyMessage_ReturnsCorrectBody()
+        {
+            // Arrange
+            var mockSmtpClient = new Mock<ISmtpClient>();
+            mockSmtpClient.Setup(x => x.SendMail(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                    .Returns((string email, string subject, string body) => new MailMessage("test@o2.pl", email, subject, body));
+
+            var sut = mockSmtpClient.Object;
+
+            const string EMAIL = "test@gmail.com";
+            const string SUBJECT = "Test Mesage";
+            const string BODY = "This is a test";
+
+            var expected = "This is a test";
+
+            // Act
+            var message = sut.SendMail(EMAIL, SUBJECT, BODY);
+
+            // Assert
+            Assert.Equal(expected, message.Body);
         }
     }
 }

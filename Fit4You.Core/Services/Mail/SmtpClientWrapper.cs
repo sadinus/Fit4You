@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Text;
 using Fit4You.Core.Utilities;
 using Microsoft.Extensions.Configuration;
 
@@ -27,7 +23,7 @@ namespace Fit4You.Core.Services.Mail
             Credentials = new NetworkCredential(config.GetValue<string>("Smtp:Email"), config.GetValue<string>("Smtp:Password"));
         }
 
-        public void SendMail(string email, string subject, string body)
+        public MailMessage SendMail(string email, string subject, string body)
         {
             var fromAddress = new MailAddress(config.GetValue<string>("Smtp:Email"), config.GetValue<string>("Smtp:Username"));
             var toAddress = new MailAddress(email);
@@ -35,12 +31,13 @@ namespace Fit4You.Core.Services.Mail
             using (var message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = subject,
-                Body = body,
+                Body = $"<div>{body}</div>",
                 IsBodyHtml = true
             })
             {
                 base.Send(message);
                 fileHelper.SaveMailLocalCopy(message.To.ToString(), message.Body);
+                return message;
             }
         }
     }
