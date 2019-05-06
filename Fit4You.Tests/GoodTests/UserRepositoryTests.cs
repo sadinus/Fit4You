@@ -25,9 +25,9 @@ namespace Fit4You.Tests.GoodTests
                 It.IsAny<string>())).Returns((string s) => users.Any(
                     x => x.Email.ToLowerInvariant() == s.ToLowerInvariant()));
 
-            mockUserRepository.Setup(x => x.GetByEmail(
-                It.IsAny<string>())).Returns((string s) => users.FirstOrDefault(
-                    x => x.Email.ToLowerInvariant() == s.ToLowerInvariant()));
+            mockUserRepository.Setup(x => x.GetById(
+                It.IsAny<int>())).Returns((int id) => users.FirstOrDefault(
+                    x => x.Id == id));
 
             mockUserRepository.Setup(x => x.Add(
                 It.IsAny<User>())).Callback((User user) => users.Add(user));
@@ -50,14 +50,14 @@ namespace Fit4You.Tests.GoodTests
         }
 
         [Fact]
-        public void GetByEmail_ForExistingUser_ShouldWork()
+        public void GetById_ForExistingUser_ShouldWork()
         {
             var expected = new User {
                 Id = 1,
                 Email = "test@gmail.com",
                 PasswordHash = "Password" };
 
-            var actual = MockUserRepository.GetByEmail(expected.Email);
+            var actual = MockUserRepository.GetById(expected.Id);
 
             actual.Should().BeEquivalentTo(expected, options =>
                 options.Excluding(x => x.UserInfo));

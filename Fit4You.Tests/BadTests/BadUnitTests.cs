@@ -109,7 +109,7 @@ namespace Fit4You.Tests.BadTests
         }
 
         [Fact]
-        public void GetByEmail_ForExistingUser_ShouldWork()
+        public void GetById_ForExistingUser_ShouldWork()
         {
             List<User> users = new List<User>
                 {
@@ -127,14 +127,14 @@ namespace Fit4You.Tests.BadTests
 
             var stubUserRepository = new Mock<IUserRepository>();
 
-            stubUserRepository.Setup(x => x.GetByEmail(
-                It.IsAny<string>())).Returns((string email) => users.SingleOrDefault(x => x.Email == email));
+            stubUserRepository.Setup(x => x.GetById(
+                It.IsAny<int>())).Returns((int id) => users.SingleOrDefault(x => x.Id == id));
 
             var stubObject = stubUserRepository.Object;
 
-            var actual = stubObject.GetByEmail(expected.Email);
+            var actual = stubObject.GetById(expected.Id);
 
-            Assert.Equal(actual.Id, expected.Id);
+            Assert.Equal(actual.Email, expected.Email);
             Assert.Equal(actual.PasswordHash, expected.PasswordHash);
         }
 
