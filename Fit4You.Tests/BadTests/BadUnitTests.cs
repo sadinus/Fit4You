@@ -97,13 +97,13 @@ namespace Fit4You.Tests.BadTests
                 PasswordHash = "Password"
             };
 
-            var userRepository = new FakeUserRepository();
+            var fakeUserRepository = new FakeUserRepository();
 
-            var beforeAdd = userRepository.FindAll().Count();
+            var beforeAdd = fakeUserRepository.FindAll().Count();
 
-            userRepository.Add(newUser);
+            fakeUserRepository.Add(newUser);
 
-            var afterAdd = userRepository.FindAll().Count();
+            var afterAdd = fakeUserRepository.FindAll().Count();
 
             Assert.Equal(beforeAdd + 1, afterAdd);
         }
@@ -147,7 +147,7 @@ namespace Fit4You.Tests.BadTests
 
             sut.DoWork(DateTime.Now.DayOfWeek);
 
-            mockMailService.Verify(x => x.SendTestMail(), Times.Once);
+            mockMailService.Verify(x => x.SendNewsletterToSubscribedUsers(), Times.Once);
         }
 
         [Fact]

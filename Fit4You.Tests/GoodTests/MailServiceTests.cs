@@ -26,7 +26,7 @@ namespace Fit4You.Tests.GoodTests
 
             sut.DoWork();
 
-            mockMailService.Verify(x => x.SendTestMail(), Times.Once);
+            mockMailService.Verify(x => x.SendNewsletterToSubscribedUsers(), Times.Once);
         }
 
         [Theory]
@@ -43,7 +43,7 @@ namespace Fit4You.Tests.GoodTests
 
             sut.DoWork();
 
-            mockMailService.Verify(x => x.SendTestMail(), Times.Never);
+            mockMailService.Verify(x => x.SendNewsletterToSubscribedUsers(), Times.Never);
         }
     }
 }

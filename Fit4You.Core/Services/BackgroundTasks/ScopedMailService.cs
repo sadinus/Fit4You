@@ -25,8 +25,8 @@ namespace Fit4You.Core.BackgroundTasks
             var dayOfWeek = dateTimeProvider.DayOfWeek();
             if (!IsWeekend(dayOfWeek))
             {
-                //mailService.SendNewsletterToSubscribedUsers();
-                mailService.SendTestMail();
+                mailService.SendNewsletterToSubscribedUsers();
+                //mailService.SendTestMail();
             }
         }
 
@@ -34,8 +34,8 @@ namespace Fit4You.Core.BackgroundTasks
         {
             if (!IsWeekend(dayOfWeek))
             {
-                //mailService.SendNewsletterToSubscribedUsers();
-                mailService.SendTestMail();
+                mailService.SendNewsletterToSubscribedUsers();
+                //mailService.SendTestMail();
             }
         }
 
