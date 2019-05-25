@@ -15,7 +15,8 @@ namespace Fit4You.Tests.GoodTests
             var mockSmtpClient = new Mock<ISmtpClient>();
             mockSmtpClient.Setup(x => x.SendMail(
                 It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
-                    .Returns((string email, string subject, string body) => new MailMessage("test@o2.pl", email, subject, body));
+                    .Returns((string email, string subject, string body) => 
+                        new MailMessage("test@o2.pl", email, subject, body));
 
             this.MockSmtpClient = mockSmtpClient.Object;
         }

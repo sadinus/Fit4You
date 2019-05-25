@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -20,9 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="wwwroot\lib\fontawesome\sprites\brands.svg" />
     <None Include="wwwroot\lib\fontawesome\sprites\regular.svg" />
     <None Include="wwwroot\lib\fontawesome\sprites\solid.svg" />
@@ -32,6 +25,12 @@
     <None Include="wwwroot\lib\fontawesome\webfonts\fa-regular-400.woff2" />
     <None Include="wwwroot\lib\fontawesome\webfonts\fa-solid-900.svg" />
     <None Include="wwwroot\lib\fontawesome\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
