@@ -55,8 +55,8 @@ namespace Fit4You.Core.BackgroundTasks
         private TimeSpan GetStartTimeSpan()
         {
             var currentTime = DateTime.Now.Ticks;
-            var executeTime = DateTime.Today.AddHours(09)
-                                            .AddMinutes(51)
+            var executeTime = DateTime.Today.AddHours(10)
+                                            .AddMinutes(00)
                                             .Ticks;
 
             long ticks = executeTime - currentTime;
